@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <style>
+    body { font-family: Arial; padding: 2em; }
+    h1 { color: #007bff; }
+    .result-box {
+      border: 1px solid #ccc;
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Search Results</h1>
+  <div id="results"></div>
+
+  <a href="index.html">← Back to Home</a>
+
+  <script>
+    // Get the search query from the URL
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("search").toLowerCase();
+    const resultsDiv = document.getElementById("results");
+
+    // Define some example matches
+    const pages = {
+      politics: "politics.html",
+      news: "news.html",
+      entertainment: "entertainment.html",
+      educative: "educative.html"
+    };
+
+    // Check for a matching page
+    if (pages[query]) {
+      resultsDiv.innerHTML = `
+        <div class="result-box">
+          <h3>We found a match!</h3>
+          <p>Click below to view content about <strong>${query}</strong>.</p>
+          <a href="${pages[query]}">Go to ${query.charAt(0).toUpperCase() + query.slice(1)} Page</a>
+        </div>
+      `;
+    } else {
+      resultsDiv.innerHTML = `
+        <div class="result-box">
+          <h3>No direct match found</h3>
+          <p>Try searching for topics like: <em>politics, news, entertainment, educative</em>.</p>
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>
