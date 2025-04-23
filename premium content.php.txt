@@ -1,0 +1,95 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $phoneNumber = $_POST['phoneNumber'];
+    $amountPaid = $_POST['amountPaid'];
+    $transactionDetails = $_POST['transactionDetails'];
+
+    // Send email to admin
+    $to = "muriminyagakelvin@gmail.com";
+    $subject = "New M-Pesa Payment Submission";
+    $message = "Phone Number: $phoneNumber\nAmount Paid: KES $amountPaid\nTransaction Details: $transactionDetails";
+    $headers = "From: no-reply@yourwebsite.com";
+
+    mail($to, $subject, $message, $headers);
+
+    // Show confirmation message instead of redirect
+    $confirmation = true;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Premium Content Access</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            max-width: 500px;
+            margin: 50px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .confirmation {
+            text-align: center;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <?php if (!isset($confirmation)): ?>
+        <h1>Access Premium Content</h1>
+        <p>To access premium content, please complete the payment form below:</p>
+        <form method="POST" action="">
+            <label for="phoneNumber">Your M-Pesa Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="e.g. 0740123456" pattern="0[7][0-9]{8}" title="Enter a valid Safaricom number" />
+            <small>Format: 07XXXXXXXX</small>
+
+            <label for="amountPaid">Amount Paid (KES):</label>
+            <input type="number" id="amountPaid" name="amountPaid" required placeholder="e.g. 100" min="1" />
+
+            <label for="transactionDetails">Transaction Details (Optional):</label>
+            <textarea id="transactionDetails" name="transactionDetails" placeholder="e.g., date, reference number"></textarea>
+
+            <button type="submit">Submit Payment</button>
+        </form>
+        <?php else: ?>
+        <div class="confirmation">
+            <h1>Thank You for Your Payment!</h1>
+            <p>Your payment is being processed. We will notify you once everything is confirmed.</p>
+            <p>If you don't see updates, check your email for confirmation.</p>
+        </div>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
