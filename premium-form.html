@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Premium Access</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
     nav {
       background-color: #333;
       padding: 1em;
@@ -14,23 +20,71 @@
       align-items: center;
       flex-wrap: wrap;
     }
+
     .nav-links a {
       color: #f8f9fa;
       text-decoration: none;
       margin: 0 15px;
     }
+
     .nav-links a:hover {
       text-decoration: underline;
     }
-    .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; }
-    input, textarea, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
-    button { background-color: #007bff; color: white; border: none; }
-    button:hover { background-color: #0056b3; }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     footer {
       background-color: #007bff;
       text-align: center;
       color: #f8f9fa;
       padding: 2em;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    .form-alert {
+      background-color: #ffdddd;
+      color: #a94442;
+      border: 1px solid #ebccd1;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 5px;
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -51,34 +105,79 @@
 <div class="container">
   <h1>Send Money To <b>0740699856</b>, then paste payment details below to show you've paid.</h1>
   <h2>Support Us & Unlock Premium Videos, Audios And Documents.</h2>
-  <form id="premiumForm" action="https://formsubmit.co/muriminyagakelvin@gmail.com" method="POST">
+
+  <form id="premiumForm" action="https://formsubmit.co/muriminyagakelvin@gmail.com" method="POST" novalidate>
     <input type="hidden" name="_subject" value="New M-Pesa Payment Submission">
     <input type="hidden" name="_next" value="thank-you.html">
     <input type="hidden" name="_autoresponse" value="Thanks for your payment! Your premium content is now available at https://mediaexpertmurimi.netlify.app/thank-you.html. If you have any issues, feel free to reply to this email.">
 
     <label for="email">Your Email Address</label>
     <input type="email" name="email" id="email" placeholder="youremail@example.com" required>
+    <small id="emailError" class="error-message"></small>
 
     <label for="phoneNumber">M-Pesa Phone Number</label>
     <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="07XXXXXXXX" required pattern="0[7][0-9]{8}">
+    <small id="phoneError" class="error-message"></small>
 
     <label for="amountPaid">Amount Paid (KES) 80 bob plus</label>
     <input type="number" name="amountPaid" id="amountPaid" placeholder="KES" min="80" required>
+    <small id="amountError" class="error-message"></small>
 
     <label for="transactionDetails">Transaction Details</label>
-    <textarea name="transactionDetails" id="transactionDetails" placeholder="Date, reference code...(optional but recommended)"></textarea>
-    <p>NB: All faked payments are still emailed to the web owner.</p>
+    <textarea name="transactionDetails" id="transactionDetails" placeholder="e.g TDN2UZWTYW, 23/4/25, 5:38PM" required></textarea>
+    <small id="transactionError" class="error-message"></small>
+
+    <div id="formAlert" class="form-alert">Please fix the errors above before submitting.</div>
 
     <button type="submit">Submit Payment</button>
   </form>
 </div>
 
 <script>
-  document.getElementById('premiumForm').addEventListener('submit', function(e) {
-    const amount = parseInt(document.getElementById('amountPaid').value, 10);
-    if (amount < 80) {
+  const form = document.getElementById('premiumForm');
+
+  form.addEventListener('submit', function (e) {
+    let isValid = true;
+
+    // Clear previous messages
+    document.getElementById('formAlert').style.display = 'none';
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+    // Get values
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phoneNumber');
+    const amount = document.getElementById('amountPaid');
+    const transaction = document.getElementById('transactionDetails');
+
+    // Email validation
+    if (!email.value || !email.value.includes('@')) {
+      document.getElementById('emailError').textContent = 'Enter a valid email address.';
+      isValid = false;
+    }
+
+    // Phone number validation
+    const phonePattern = /^0[7][0-9]{8}$/;
+    if (!phonePattern.test(phone.value)) {
+      document.getElementById('phoneError').textContent = 'Enter a valid Safaricom number (e.g. 0712345678).';
+      isValid = false;
+    }
+
+    // Amount validation
+    if (!amount.value || parseInt(amount.value, 10) < 80) {
+      document.getElementById('amountError').textContent = 'Minimum payment is KES 80.';
+      isValid = false;
+    }
+
+    // Transaction details
+    if (!transaction.value || transaction.value.trim().length < 5) {
+      document.getElementById('transactionError').textContent = 'Enter your transaction details (at least 5 characters).';
+      isValid = false;
+    }
+
+    // Show general alert
+    if (!isValid) {
       e.preventDefault();
-      alert('Minimum payment to access premium content is KES 80. Please top up.');
+      document.getElementById('formAlert').style.display = 'block';
     }
   });
 </script>
