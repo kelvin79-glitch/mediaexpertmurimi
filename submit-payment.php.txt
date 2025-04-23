@@ -1,0 +1,22 @@
+<?php
+// Check if the form was submitted using POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Capture the form input values
+    $phoneNumber = $_POST['phoneNumber'];  // M-Pesa phone number
+    $amountPaid = $_POST['amountPaid'];    // Amount paid in KES
+    $transactionDetails = $_POST['transactionDetails'];  // Transaction details (optional)
+    
+    // Send email notification to you (admin)
+    $to = "muriminyagakelvin@gmail.com"; // Replace with your email address
+    $subject = "New M-Pesa Payment Submission";
+    $message = "Phone Number: $phoneNumber\nAmount Paid: KES $amountPaid\nTransaction Details: $transactionDetails";
+    $headers = "From: no-reply@yourwebsite.com"; // Replace with your website's email address
+    
+    // Send the email to the admin
+    mail($to, $subject, $message, $headers);
+    
+    // After email is sent, redirect the user to the results page
+    header("Location: results.html");
+    exit();  // Ensures no further code is executed after the redirect
+}
+?>
