@@ -1,38 +1,41 @@
-<!-- thank-you.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You</title>
-<style>
+  <style>
+    nav {
+      background-color: #333;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-  nav {
-    background-color: #333;
-    padding: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+    .nav-links a {
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 0 15px;
+    }
 
-  .nav-links a {
-    color: #f8f9fa;
-    text-decoration: none;
-    margin: 0 15px;
-  }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
+    main {
+      padding: 2em;
+      text-align: center;
+    }
 
-  footer {
-    background-color: #007bff;
-    text-align: center;
-    color: #f8f9fa;
-    padding: 2em;
-  }
-</style>
+    footer {
+      background-color: #007bff;
+      text-align: center;
+      color: #f8f9fa;
+      padding: 2em;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -46,13 +49,13 @@
       <a href="premium-form.html" style="color: yellow; font-weight: bold;">Premium</a>
     </div>
   </nav>
-  <main style="padding: 2em; text-align: center;">
+  <main>
     <h1>Thank You!</h1>
     <p>Your payment has been submitted. You can now access your premium content below:</p>
     <a href="premium-content.html">👉 Access Premium Content</a>
   </main>
-<footer>
-  &copy; Media Expert @Murimi. All Rights Reserved.
-</footer>
+  <footer>
+    &copy; Media Expert @Murimi. All Rights Reserved.
+  </footer>
 </body>
 </html>
