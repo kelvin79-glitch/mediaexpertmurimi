@@ -1,97 +1,61 @@
+<!-- premium-content.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Premium Content Access</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Content</title>
+<style>
+  nav {
+    width: 100%;
+    background-color: #333;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+    .nav-links a {
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 0 15px;
     }
-    .container {
-      background-color: #fff;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 500px;
-      margin: 50px auto;
-      border-radius: 8px;
+    .nav-links a:hover {
+      text-decoration: underline;
     }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 15px;
-    }
-    input, textarea, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    small {
-      color: #666;
-      display: block;
-      margin-top: -8px;
-      margin-bottom: 10px;
-    }
-  </style>
+html, body{
+width:100%;
+}
+ footer {
+    background-color: #007bff;
+    text-align: center;
+    color: #f8f9fa;
+    padding: 2em;
+  }
+</style>
 </head>
 <body>
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="entertainment.html">Entertainment</a>
+      <a href="politics.html">Politics</a>
+      <a href="educative.html">Educative</a>
+      <a href="contact.html">Contact</a>
+      <a href="premium-form.html" style="color: yellow; font-weight: bold;">Premium</a>
+    </div>
+  </nav>
 
-  <div class="container">
-    <h1>Unlock Premium Content</h1>
-    <p>To access premium content, kindly submit proof of your M-Pesa payment below.</p>
-
-    <form action="https://formsubmit.co/muriminyagakelvin@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New M-Pesa Payment Submission">
-      <input type="hidden" name="_next" value="https://mediaexpertmurimi.netlify.app/thank-you.html">
-
-      <label for="phoneNumber">Your M-Pesa Phone Number:</label>
-      <input type="tel" 
-             id="phoneNumber" 
-             name="phoneNumber" 
-             required 
-             placeholder="e.g. 0740123456"
-             pattern="0[7][0-9]{8}" 
-             title="Enter a valid Safaricom number (e.g. 0740123456)" />
-      <small>Format: 07XXXXXXXX</small>
-
-      <label for="amountPaid">Amount Paid (KES):</label>
-      <input type="number" 
-             id="amountPaid" 
-             name="amountPaid" 
-             required 
-             placeholder="Enter amount (KES)" 
-             min="1" />
-
-      <label for="transactionDetails">Transaction Details (Optional):</label>
-      <textarea id="transactionDetails" 
-                name="transactionDetails" 
-                placeholder="e.g., date, reference, notes (optional)"></textarea>
-
-      <button type="submit">Submit Payment</button>
-    </form>
-  </div>
-
+    <h1>Exclusive Premium Content</h1>
+    <p>This content is only available to our supporters. Thank you for backing us!</p>
+    <audio controls>
+      <source src="love_talk_episode1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </main>
+<footer>
+  &copy; Media Expert @Murimi. All Rights Reserved.
+</footer>
 </body>
 </html>
