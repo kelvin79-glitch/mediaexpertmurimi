@@ -26,12 +26,12 @@
     input, textarea, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
     button { background-color: #007bff; color: white; border: none; }
     button:hover { background-color: #0056b3; }
- footer {
-    background-color: #007bff;
-    text-align: center;
-    color: #f8f9fa;
-    padding: 2em;
-  }
+    footer {
+      background-color: #007bff;
+      text-align: center;
+      color: #f8f9fa;
+      padding: 2em;
+    }
   </style>
 </head>
 <body>
@@ -49,11 +49,15 @@
 </nav>
 
 <div class="container">
-<h1> Send Money To <b>:0740699856,</b> then paste payment details below to show you've paid.</h2>
+  <h1>Send Money To <b>0740699856</b>, then paste payment details below to show you've paid.</h1>
   <h2>Support Us & Unlock Premium Videos, Audios And Documents.</h2>
   <form id="premiumForm" action="https://formsubmit.co/muriminyagakelvin@gmail.com" method="POST">
     <input type="hidden" name="_subject" value="New M-Pesa Payment Submission">
     <input type="hidden" name="_next" value="thank-you.html">
+    <input type="hidden" name="_autoresponse" value="Thanks for your payment! Your premium content is now available at https://yourdomain.com/thank-you.html. If you have any issues, feel free to reply to this email.">
+
+    <label for="email">Your Email Address</label>
+    <input type="email" name="email" id="email" placeholder="youremail@example.com" required>
 
     <label for="phoneNumber">M-Pesa Phone Number</label>
     <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="07XXXXXXXX" required pattern="0[7][0-9]{8}">
@@ -63,7 +67,8 @@
 
     <label for="transactionDetails">Transaction Details</label>
     <textarea name="transactionDetails" id="transactionDetails" placeholder="Date, reference code...(optional but recommended)"></textarea>
-NB: all faked payments are still emailed to the web owner 
+    <p>NB: All faked payments are still emailed to the web owner.</p>
+
     <button type="submit">Submit Payment</button>
   </form>
 </div>
@@ -77,6 +82,7 @@ NB: all faked payments are still emailed to the web owner
     }
   });
 </script>
+
 <footer>
   &copy; Media Expert @Murimi. All Rights Reserved.
 </footer>
