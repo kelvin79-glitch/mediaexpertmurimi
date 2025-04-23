@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Access</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+    nav {
+      background-color: #333;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .container { max-width: 600px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; }
+    input, textarea, button { width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background-color: #007bff; color: white; border: none; }
+    button:hover { background-color: #0056b3; }
+ footer {
+    background-color: #007bff;
+    text-align: center;
+    color: #f8f9fa;
+    padding: 2em;
+  }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="entertainment.html">Entertainment</a>
+    <a href="politics.html">Politics</a>
+    <a href="educative.html">Educative</a>
+    <a href="contact.html">Contact</a>
+    <a href="premium-form.html" style="color: yellow; font-weight: bold;">Premium</a>
+  </div>
+</nav>
+
+<div class="container">
+<h1> Send Money To <b>:0740699856,</b> then paste payment details below to show you've paid.</h2>
+  <h2>Support Us & Unlock Premium Videos, Audios And Documents.</h2>
+  <form id="premiumForm" action="https://formsubmit.co/muriminyagakelvin@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New M-Pesa Payment Submission">
+    <input type="hidden" name="_next" value="thank-you.html">
+
+    <label for="phoneNumber">M-Pesa Phone Number</label>
+    <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="07XXXXXXXX" required pattern="0[7][0-9]{8}">
+
+    <label for="amountPaid">Amount Paid (KES) 80 bob plus</label>
+    <input type="number" name="amountPaid" id="amountPaid" placeholder="KES" min="80" required>
+
+    <label for="transactionDetails">Transaction Details</label>
+    <textarea name="transactionDetails" id="transactionDetails" placeholder="Date, reference code...(optional but recommended)"></textarea>
+NB: all faked payments are still emailed to the web owner 
+    <button type="submit">Submit Payment</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('premiumForm').addEventListener('submit', function(e) {
+    const amount = parseInt(document.getElementById('amountPaid').value, 10);
+    if (amount < 80) {
+      e.preventDefault();
+      alert('Minimum payment to access premium content is KES 80. Please top up.');
+    }
+  });
+</script>
+<footer>
+  &copy; Media Expert @Murimi. All Rights Reserved.
+</footer>
+</body>
+</html>
